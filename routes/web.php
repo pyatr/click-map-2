@@ -16,11 +16,23 @@ use App\Http\Controllers\ClicksController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
+});
+
+Route::get('/click-test', function () {
+    return view('clicktest');
+});
+
+Route::get('/click-tracked', function () {
+    return view('tracked');
 });
 
 Route::get('/click-map', function () {
     return view('clickmap');
+});
+
+Route::get('/click-hours', function () {
+    return view('clickhours');
 });
 
 Route::post('/add-click', function () {

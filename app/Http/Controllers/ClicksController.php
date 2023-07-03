@@ -11,7 +11,7 @@ class ClicksController extends Controller
         $date = $data['date'];
         $x = $data['x'];
         $y = $data['y'];
-        $domain = $data['domain'];
+        $domain = $_SERVER['REMOTE_ADDR'];
         $domainsController = new DomainsController();
         if ($domainsController->isDomainAvailable($domain)) {
             ClicksModel::addClick($date, $x, $y, $domain);
@@ -23,9 +23,9 @@ class ClicksController extends Controller
         return ClicksModel::getAllClicks();
     }
 
-    public function getClicksForDomain(array $data): array
+    public function getClicksForDomain(): array
     {
-        $domain = $data['domain'];
+        $domain = $_SERVER['REMOTE_ADDR'];
         return ClicksModel::getClicksForDomain($domain);
     }
 }

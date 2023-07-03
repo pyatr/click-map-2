@@ -38,7 +38,6 @@ Route::get('/click-hours', function () {
 Route::post('/add-click', function () {
     //$_POST is empty for whatever reason
     $data = json_decode(file_get_contents("php://input"), true);
-    $data['domain'] = $_SERVER['REMOTE_ADDR'];
     $clicksController = new ClicksController();
     $clicksController->addClick($data);
 });
@@ -51,7 +50,6 @@ Route::post('/add-new-domain', function () {
 
 Route::post('/delete-domain', function () {
     $data = json_decode(file_get_contents("php://input"), true);
-    $data['domain'] = $_SERVER['REMOTE_ADDR'];
     $domainController = new DomainsController();
     $domainController->deleteDomain($data);
 });
@@ -61,10 +59,13 @@ Route::get('/get-all-clicks', function () {
     echo json_encode($clicksController->getAllClicks());
 });
 
+Route::get('/get-tracked-domains', function () {
+    $domainsController = new DomainsController();
+    echo json_encode($domainsController->getAllDomains());
+});
+
 Route::get('/get-clicks-for-domain', function () {
-    $data = json_decode(file_get_contents("php://input"), true);
-    $data['domain'] = $_SERVER['REMOTE_ADDR'];
     $clicksController = new ClicksController();
-    echo json_encode($clicksController->getClicksForDomain($data));
+    echo json_encode($clicksController->getClicksForDomain());
 });
 

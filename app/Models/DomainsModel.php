@@ -37,11 +37,11 @@ class DomainsModel extends Model
 
     public static function deleteDomain(string $domainName): void
     {
-        DomainsModel::where([self::domain, '=', $domainName])->delete();
+        DomainsModel::where(self::domain, '=', $domainName)->delete();
     }
 
     public static function getAllDomains(): array
     {
-        return DomainsModel::select()->toArray();
+        return DomainsModel::select()->get()->toArray();
     }
 }

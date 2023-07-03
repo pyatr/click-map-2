@@ -19,7 +19,7 @@ class DomainsController extends Controller
 
     public function deleteDomain(array $data): void
     {
-        $domainName = $data['newDomain'];
+        $domainName = $data['domainToDelete'];
         DomainsModel::deleteDomain($domainName);
     }
 
